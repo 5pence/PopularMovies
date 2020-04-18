@@ -1,7 +1,6 @@
 package uk.co.spiderspun.movieshare.utils;
 
 import android.net.Uri;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,7 @@ public final class NetworkUtils {
     private static final String THE_MOVIE_DB_URL = "https://api.themoviedb.org";
     private static final String API_VERSION = "3";
     private static final String API_KEY_PARAM = "api_key";
-    private static final String API_KEY = "dc12199538f77d9d734903b8cbdec489";
+    private static final String API_KEY = "";
 
     public static URL buildUrl(String mediaType, String filter) {
         Uri builtUri = Uri.parse(THE_MOVIE_DB_URL).buildUpon()
@@ -31,7 +30,6 @@ public final class NetworkUtils {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return url;
     }
 
