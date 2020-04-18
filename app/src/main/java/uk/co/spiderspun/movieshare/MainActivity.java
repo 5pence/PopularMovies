@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private GridLayoutManager mGridLayoutManager;
+    private MovieAdapter mMovieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
         // wire up the grid layout manager to recycler view
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
+        // wire the movie adapter to the recycler
+        mMovieAdapter = new MovieAdapter((MovieAdapter.MovieAdapterOnClickHandler) this);
+        mRecyclerView.setAdapter(mMovieAdapter);
+
+
     }
 }
