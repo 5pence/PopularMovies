@@ -1,16 +1,16 @@
-package uk.co.spiderspun.movieshare;
+package uk.co.spiderspun.movieshare.utils;
 
 import java.io.Serializable;
 
 public class Movie implements Serializable {
 
-    private String title;
-    private String id;
-    private String posterPath;
-    private String backdropPath;
-    private String voteAverage;
-    private String releaseDate;
-    private String overview;
+    private final String title;
+    private final String id;
+    private final String posterPath;
+    private final String backdropPath;
+    private final String voteAverage;
+    private final String releaseDate;
+    private final String overview;
 
     public Movie(String id, String title, String posterPath, String backdropPath,
                  String voteAverage, String releaseDate, String overview) {
@@ -31,7 +31,7 @@ public class Movie implements Serializable {
         return title;
     }
 
-    String getPosterPath() {
+    public String getPosterPath() {
         return posterPath;
     }
 

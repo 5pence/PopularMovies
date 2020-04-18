@@ -1,4 +1,4 @@
-package uk.co.spiderspun.movieshare;
+package uk.co.spiderspun.movieshare.adapter;
 
 import android.net.Uri;
 import android.view.View;
@@ -12,13 +12,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
+import uk.co.spiderspun.movieshare.utils.Movie;
+import uk.co.spiderspun.movieshare.R;
+
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
     private static final String BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/w780";
     private final MovieAdapterOnClickHandler movieAdapterOnClickHandler;
     private List<Movie> movies;
+    private String mPosterPath;
+    private String fullPosterPath;
 
-    MovieAdapter(MovieAdapterOnClickHandler movieAdapterOnClickHandler) {
+    public MovieAdapter(MovieAdapterOnClickHandler movieAdapterOnClickHandler) {
         this.movieAdapterOnClickHandler = movieAdapterOnClickHandler;
     }
 
@@ -35,8 +40,8 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHol
     }
 
     private void setMoviePoster(MovieAdapterViewHolder movieAdapterViewHolder, int position) {
-        String mPosterPath = movies.get(position).getPosterPath();
-        String posterPath = BASE_IMAGE_PATH.concat(mPosterPath);
+        mPosterPath = movies.get(position).getPosterPath();
+        fullPosterPath = BASE_IMAGE_PATH.concat(mPosterPath);
         new Picasso.Builder(movieAdapterViewHolder
                 .itemView.getContext())
                 .listener(new Picasso.Listener() {
@@ -46,7 +51,7 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHol
                     }
             })
              .build()
-             .load(posterPath)
+             .load(fullPosterPath)
              .into(movieAdapterViewHolder.getBillboardImageView());
     }
 
@@ -57,6 +62,10 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHol
             return 0;
         }
         return movies.size();
+    }
+
+    public interface MovieAdapterOnClickHandler {
+        void onClick(Movie movie);
     }
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -78,9 +87,5 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHol
         ImageView getBillboardImageView() {
             return mBillboardImageView;
         }
-    }
-
-    public interface MovieAdapterOnClickHandler {
-        void onClick(Movie movie);
     }
 }
