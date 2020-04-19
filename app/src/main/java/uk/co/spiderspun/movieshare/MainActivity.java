@@ -29,7 +29,6 @@ import uk.co.spiderspun.movieshare.utils.MovieLoad;
 public class MainActivity extends AppCompatActivity implements MovieAdapter.MovieAdapterOnClickHandler, LoaderManager.LoaderCallbacks<List<Movie>> {
 
     private RecyclerView mRecyclerView;
-    private GridLayoutManager mGridLayoutManager;
     private MovieAdapter mMovieAdapter;
     private View mLoadingSpinner;
     private Parcelable mRecyclerLocation;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.list_of_movies_rv);
-        mGridLayoutManager = new GridLayoutManager(this, 2,
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 2,
                 GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -92,17 +91,19 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
                 mFilterState = "top_rated";
                 setActionBarTitle(mFilterState);
                 return true;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void setActionBarTitle(String title) {
-        if (title.equals("popular")) { setTitle("Most Popular"); }
+        if ("popular".equals(title)) { setTitle("Most Popular"); }
         else setTitle("Highest Rated");
     }
 
     private void getMovieInfo(String filter) {
-        if (filter.equals("top_rated")) {
+        if ("top_rated".equals(filter)) {
             LoaderManager.getInstance(this).initLoader(TOP_RATED_LOADER, null, this);
         } else {
             LoaderManager.getInstance(this).initLoader(MOVIE_LOADER, null, this);
@@ -113,10 +114,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mMovieAdapter.buildMovies(movieList);
         mMovieAdapter.notifyDataSetChanged();
         mRecyclerView.setVisibility(View.VISIBLE);
-        if (mRecyclerLocation != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                Objects.requireNonNull(mRecyclerView.getLayoutManager()).onRestoreInstanceState(mRecyclerLocation);
-            }
+        if (mRecyclerLocation != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Objects.requireNonNull(mRecyclerView.getLayoutManager()).onRestoreInstanceState(mRecyclerLocation);
         }
     }
 
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         mFilterState = savedInstanceState.getString(FILTER_STATE);
         mRecyclerLocation = savedInstanceState.getParcelable(RECYCLER_POSITION);
 
-        if (mFilterState.equals("top_rated")) {
+        if ("top_rated".equals(mFilterState)) {
             getMovieInfo("top_rated");
         } else {
             getMovieInfo("popular");

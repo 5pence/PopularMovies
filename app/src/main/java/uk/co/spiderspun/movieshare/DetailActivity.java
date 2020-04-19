@@ -11,27 +11,20 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DetailActivity extends AppCompatActivity {
     public static final String BACKDROP_BASE_PATH = "https://image.tmdb.org/t/p/w1280";
     public static final String POSTER_BASE_PATH = "https://image.tmdb.org/t/p/w500";
-    private Movie mMovie;
-    private ImageView mBackdropPath;
-    private TextView mName;
-    private ImageView mPosterPath;
-    private TextView mRating;
-    private TextView mReleaseDate;
-    private TextView mOverview;
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_detail);
 
-        mBackdropPath = findViewById(R.id.movieBackdrop);
-        mPosterPath = findViewById(R.id.moviePosterThumbnail);
-        mName = findViewById(R.id.movieName);
-        mRating = findViewById(R.id.rating);
-        mReleaseDate = findViewById(R.id.releaseDate);
-        mOverview = findViewById(R.id.overview);
+        ImageView mBackdropPath = findViewById(R.id.movieBackdrop);
+        ImageView mPosterPath = findViewById(R.id.moviePosterThumbnail);
+        TextView mName = findViewById(R.id.movieName);
+        TextView mRating = findViewById(R.id.rating);
+        TextView mReleaseDate = findViewById(R.id.releaseDate);
+        TextView mOverview = findViewById(R.id.overview);
 
-        mMovie = (Movie) getIntent().getExtras().getSerializable("movie");
+        Movie mMovie = (Movie) getIntent().getExtras().getSerializable("movie");
 
         Picasso.get().load(BACKDROP_BASE_PATH.concat(mMovie.getBackdropPath())).into(mBackdropPath);
         Picasso.get().load(POSTER_BASE_PATH.concat(mMovie.getPosterPath())).into(mPosterPath);

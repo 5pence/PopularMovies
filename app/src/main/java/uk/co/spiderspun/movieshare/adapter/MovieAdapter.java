@@ -20,8 +20,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     private static final String BASE_IMAGE_PATH = "https://image.tmdb.org/t/p/w780";
     private final MovieAdapterOnClickHandler movieAdapterOnClickHandler;
     private List<Movie> movies;
-    private String mPosterPath;
-    private String fullPosterPath;
 
     public MovieAdapter(MovieAdapterOnClickHandler movieAdapterOnClickHandler) {
         this.movieAdapterOnClickHandler = movieAdapterOnClickHandler;
@@ -40,8 +38,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     }
 
     private void setMoviePoster(MovieAdapterViewHolder movieAdapterViewHolder, int position) {
-        mPosterPath = movies.get(position).getPosterPath();
-        fullPosterPath = BASE_IMAGE_PATH.concat(mPosterPath);
+        String mPosterPath = movies.get(position).getPosterPath();
+        String fullPosterPath = BASE_IMAGE_PATH.concat(mPosterPath);
         new Picasso.Builder(movieAdapterViewHolder
                 .itemView.getContext())
                 .listener(new Picasso.Listener() {
@@ -89,7 +87,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             movieAdapterOnClickHandler.onClick(movies.get(adapterPosition));
         }
 
-        ImageView getBillboardImageView() {
+        private ImageView getBillboardImageView() {
             return mBillboardImageView;
         }
     }

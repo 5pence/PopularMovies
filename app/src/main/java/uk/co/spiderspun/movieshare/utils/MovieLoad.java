@@ -31,7 +31,7 @@ public class MovieLoad extends AsyncTaskLoader<List<Movie>> {
         if (mFilter == null) {
             return null;
         }
-        URL moviesRequestUrl = NetworkUtils.buildUrl(mFilter);
+        URL moviesRequestUrl = buildUrl(mFilter);
         try {
             String jsonMovieResponse = getResponseFromHttpUrl(moviesRequestUrl);
             return MoviesDbJsonUtils.getMoviesStringsFromJson(jsonMovieResponse);
