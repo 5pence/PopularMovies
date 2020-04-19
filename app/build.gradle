@@ -15,9 +15,15 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField 'String', "ApiKey", MyFilmTMDBApp_ApiKey
+            resValue 'string', "api_key", MyFilmTMDBApp_ApiKey
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "ApiKey", MyFilmTMDBApp_ApiKey
+            resValue 'String', "api_key", MyFilmTMDBApp_ApiKey
         }
     }
 

@@ -64,6 +64,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         return movies.size();
     }
 
+    public void buildMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
     public interface MovieAdapterOnClickHandler {
         void onClick(Movie movie);
     }
@@ -71,6 +75,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ImageView mBillboardImageView;
+        private int adapterPosition;
 
         MovieAdapterViewHolder(View view) {
             super(view);
@@ -80,7 +85,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         @Override
         public void onClick(View view) {
-            int adapterPosition = getAdapterPosition();
+            adapterPosition = getAdapterPosition();
             movieAdapterOnClickHandler.onClick(movies.get(adapterPosition));
         }
 
