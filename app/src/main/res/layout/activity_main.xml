@@ -5,6 +5,12 @@
     android:id="@+id/grid_layout_fl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/loading_spinner_pb"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_of_movies_rv"
         android:layout_width="match_parent"
