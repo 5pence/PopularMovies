@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
-
 import uk.co.spiderspun.movieshare.BuildConfig;
 
 class NetworkUtils {
