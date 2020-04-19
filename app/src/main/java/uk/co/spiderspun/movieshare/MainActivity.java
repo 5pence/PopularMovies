@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     private View mLoadingSpinner;
     private Parcelable mRecyclerLocation;
 
-    private static final int MOVIE_LOADER = 14;
-    private static final int TOP_RATED_LOADER = 22;
+    private static final int MOVIE_LOADER = 1;
+    private static final int TOP_RATED_LOADER = 2;
     private static final String FILTER_STATE = "filter";
     private static final String RECYCLER_POSITION = "RecyclerViewLocation";
     private String mFilterState = "popular";
@@ -44,19 +44,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
-        // wire up recycle view to resource
         mRecyclerView = findViewById(R.id.list_of_movies_rv);
-        // create grid layout manager
         mGridLayoutManager = new GridLayoutManager(this, 2,
                 GridLayoutManager.VERTICAL, false);
-        // wire up the grid layout manager to recycler view
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        // wire the movie adapter to the recycler
         mMovieAdapter = new MovieAdapter( this);
         mRecyclerView.setAdapter(mMovieAdapter);
         mLoadingSpinner = findViewById(R.id.loading_spinner_pb);
-        // start the load
         LoaderManager.getInstance(this).initLoader(MOVIE_LOADER, null, this);
     }
 
