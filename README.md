@@ -1,6 +1,6 @@
 # Popular Movies 
 
-### Project Notes
+## Project Notes
 To run the project at the end of your gradle.properties file add:
 MyFilmTMDBApp_ApiKey="**your API key lives here**"
 
