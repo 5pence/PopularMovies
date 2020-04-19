@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         LoaderManager.getInstance(this).initLoader(MOVIE_LOADER, null, this);
     }
 
+
     @NonNull
     @Override
     public Loader<List<Movie>> onCreateLoader(int id, @Nullable Bundle args) {
